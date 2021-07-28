@@ -1,0 +1,6 @@
+services:
+  fbshare.redirect_subscriber:
+    class: \Drupal\fbshare\EventSubscriber\FbShareRedirectSubscriber
+    arguments: ['@current_route_match']
+    tags:
+      - { name: event_subscriber }

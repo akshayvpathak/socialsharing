@@ -1,0 +1,108 @@
+<?php
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_theme().
+ */
+function socialmedia_theme($existing, $type, $theme, $path) {
+  return [
+    'socialmedia_channel' => [
+      'variables' => ['fblink' => NULL,'twitterlink' => NULL,'linkedinlink' => NULL],
+    ],
+    'socialmedia_channel_facebook_return' => [
+      'variables' => ['error' => NULL,'successmessage'=>NULL],
+    ],
+    'socialmedia_channel_twitter_return' => [
+      'variables' => ['error' => NULL,'successmessage'=>NULL],
+    ],
+    'socialmedia_channel_linkedin_return' => [
+      'variables' => ['error' => NULL,'successmessage'=>NULL],
+    ],
+  ];
+}
+
+
+function socialmedia_install(){
+    $spec = [
+        'description' => 'Contain All Social Media Platform Tocken',
+        'fields' => [
+          'id' => [
+            'type' => 'serial',
+            'not null' => TRUE,
+          ],
+          'user_id' => [
+            'type' => 'int',
+            'not null' => TRUE,
+            'default' => '0',
+            'unsigned' => TRUE,
+          ],
+          'fb_access_token' => [
+            'type' => 'varchar',
+            'not null' => FALSE,
+            'length' => 256,
+            'default' => NULL,
+          ],
+          'twitter_oauth_token' => [
+            'type' => 'varchar',
+            'not null' => FALSE,
+            'length' => 256,
+            'default' => NULL,
+          ],
+          'twitter_oauth_token_secret' => [
+            'type' => 'varchar',
+            'not null' => FALSE,
+            'length' => 256,
+            'default' => NULL,
+          ],
+          'linkedin_access_token' => [
+            'type' => 'varchar',
+            'not null' => FALSE,
+            'length' => 512,
+            'default' => NULL,
+          ],
+          'fb_end_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => FALSE,
+          ],
+          'fb_start_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => FALSE,
+          ],
+          'twitter_end_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => FALSE,
+          ],
+          'twitter_start_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => FALSE,
+          ],
+          'linkedin_end_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => FALSE,
+          ],
+          'linkedin_start_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => FALSE,
+          ],
+          'created_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => TRUE,
+          ],
+        ],
+        'primary key' => ['id'],
+      ];
+     $schema = Database::getConnection()->schema();
+     $schema->createTable('social_media', $spec);
+    }
+    function socialmedia_uninstall(){
+        $table = 'social_media';
+        $schema = Database::getConnection()->schema();
+        $schema->dropTable($table);
+    }

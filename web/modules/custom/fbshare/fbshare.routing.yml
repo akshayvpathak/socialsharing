@@ -1,0 +1,23 @@
+fbshare.fbcontentform:
+  path: 'fb-content-form'
+  defaults:
+    _form: '\Drupal\fbshare\Form\FacebookContentForm'
+    _title: 'Facebook Share'
+  requirements:
+    _permission: 'access content'
+fbshare.fbconnectform:
+  path: 'fb-connect-form'
+  defaults:
+    _form: '\Drupal\fbshare\Form\FacebookConnectForm'
+    _title: 'Facebook connect'
+  requirements:
+    _permission: 'access content'
+fbshare.return_from_fb:
+  path: 'fb-connect/return'
+  defaults:
+    _controller: '\Drupal\fbshare\Controller\FbConnectController::returnFromFb'
+    _title: 'Facebook login'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE

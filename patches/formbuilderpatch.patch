@@ -1,0 +1,14 @@
+diff --git a/web/core/lib/Drupal/Core/Form/FormBuilder.php b/web/core/lib/Drupal/Core/Form/FormBuilder.php
+index 023a661..d28702e 100644
+--- a/web/core/lib/Drupal/Core/Form/FormBuilder.php
++++ b/web/core/lib/Drupal/Core/Form/FormBuilder.php
+@@ -1247,7 +1247,8 @@ protected function handleInputElement($form_id, &$element, FormStateInterface &$
+         if (!$input_exists && !$form_state->isRebuilding() && !$form_state->isProgrammed()) {
+           // Add the necessary parent keys to FormState::$input and sets the
+           // element's input value to NULL.
+-          NestedArray::setValue($form_state->getUserInput(), $element['#parents'], NULL);
++         // NestedArray::setValue($form_state->getUserInput(), $element['#parents'], NULL);
++          NestedArray::setValue($form_state->getUserInput(), $element['#parents'], NULL,TRUE);
+           $input_exists = TRUE;
+         }
+         // If we have input for the current element, assign it to the #value

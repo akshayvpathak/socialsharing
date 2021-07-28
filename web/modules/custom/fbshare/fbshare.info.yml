@@ -1,0 +1,5 @@
+name: FB Share
+type: module
+description: module for sharing facebook image and video
+package: SOCIAL
+core_version_requirement: ^8 || ^9

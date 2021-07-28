@@ -1,0 +1,44 @@
+socialmedia.channel:
+  path: 'socialmedia/channel'
+  defaults:
+    _controller: Drupal\socialmedia\Controller\SocialMediaChannelController::getLinks
+    _title: 'Register Social Media Channel'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: 'TRUE'
+socialmedia.facebook_channel_return:
+  path: 'socialmedia/channel/facebook/return'
+  defaults:
+    _controller: Drupal\socialmedia\Controller\SocialMediaChannelController::registerFacebookToken
+    _title: 'Register Social Media Channel'
+  requirements:
+    _permission: 'access content'
+socialmedia.twitter_channel_return:
+  path: 'socialmedia/channel/twitter/return'
+  defaults:
+    _controller: Drupal\socialmedia\Controller\SocialMediaChannelController::registerTwitterToken
+    _title: 'Register Social Media Channel'
+  requirements:
+    _permission: 'access content'
+socialmedia.linkedin_channel_return:
+  path: 'socialmedia/channel/linkedin/return'
+  defaults:
+    _controller: Drupal\socialmedia\Controller\SocialMediaChannelController::registerLinkedinToken
+    _title: 'Register Social Media Channel'
+  requirements:
+    _permission: 'access content'
+socialmedia.postform:
+  path: 'socialmedia/post'
+  defaults:
+    _form: '\Drupal\socialmedia\Form\SocialMediaPostForm'
+    _title: 'Post'
+  requirements:
+    _permission: 'access content'
+socialmedia.api_detail:
+  path: '/admin/config/socialmedia-configuration'
+  defaults:
+    _form: '\Drupal\socialmedia\Form\SocialMediaConfigurationForm'
+    _title: 'SocialMedia configuration'
+  requirements:
+    _permission: 'administer site configuration'

@@ -66,11 +66,6 @@
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
-        "patches": {
-            "drupal/core": {
-                "Handling multiple file in form": "https://www.drupal.org/files/issues/2019-01-04/3023924-form-8.patch"
-            }
-        },
         "patchLevel": {
             "drupal/core": "-p2"
         },

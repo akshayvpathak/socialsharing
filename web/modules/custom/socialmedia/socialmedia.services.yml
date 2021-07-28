@@ -1,0 +1,29 @@
+services:
+  socialmedia.facebook_service:
+    class: Drupal\socialmedia\FacebookService
+    arguments: ['@config.factory']
+  socialmedia.twitter_service:
+    class: Drupal\socialmedia\TwitterService
+    arguments: ['@request_stack','@config.factory']
+  socialmedia.linkedin_service:
+    class: Drupal\socialmedia\LinkedinService
+    arguments: ['@request_stack','@config.factory']
+  socialmedia.database_service:
+    class: Drupal\socialmedia\SocialMediaDatabaseService
+    arguments: ['@current_user','@database']
+  socialmedia.channel_info:
+    class: \Drupal\socialmedia\SocialMediaChannelInfo
+    arguments: ['@socialmedia.database_service','@socialmedia.facebook_service','@socialmedia.twitter_service','@socialmedia.linkedin_service']
+  socialmedia.user_verify:
+    class: \Drupal\socialmedia\EventSubscriber\SocialMediaVerifier
+    arguments: ['@current_route_match','@socialmedia.database_service']
+    tags:
+      - { name: event_subscriber }
+  socialmedia.logger.channel.social_media:
+    parent: logger.channel_base
+    arguments: ['social_media']
+  socialmedia.post_event:
+    class: \Drupal\socialmedia\EventSubscriber\SocialMediaPostEventSubscriber
+    arguments: ['@socialmedia.database_service','@socialmedia.facebook_service','@socialmedia.twitter_service','@socialmedia.linkedin_service']
+    tags:
+      - { name: event_subscriber }

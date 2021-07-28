@@ -1,0 +1,57 @@
+<?php
+use Drupal\Core\Database\Database;
+
+function fbshare_install(){
+    $spec = [
+        'description' => 'Scanning Actions Raw Data',
+        'fields' => [
+          'id' => [
+            'type' => 'serial',
+            'not null' => TRUE,
+          ],
+          'nid' => [
+            'type' => 'int',
+            'not null' => TRUE,
+            'default' => '0',
+            'unsigned' => TRUE,
+          ],
+          'mac_address' => [
+            'type' => 'varchar',
+            'not null' => TRUE,
+            'length' => 20,
+            'default' => '',
+          ],
+          'rssi' => [
+            'type' => 'int',
+            'not null' => TRUE,
+          ],
+          'scanner_id' => [
+            'type' => 'int',
+            'not null' => TRUE,
+          ],
+          'start_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => TRUE,
+          ],
+          'current_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => TRUE,
+          ],
+          'created_date' => [
+            'type' => 'varchar',
+            'mysql_type' => 'datetime',
+            'not null' => TRUE,
+          ],
+        ],
+        'primary key' => ['id'],
+      ];
+     $schema = Database::getConnection()->schema();
+     $schema->createTable('scanning_raw_data', $spec);
+    }
+    function fbshare_uninstall(){
+        $table = 'scanning_raw_data';
+        $schema = Database::getConnection()->schema();
+        $schema->dropTable($table);
+    }

@@ -1,0 +1,14 @@
+emoji:
+  version: 1.x
+  js:
+    js/emoji-picker.js: {}
+  dependencies:
+    - core/jquery
+custom:
+  version: 1.x
+  js:
+    js/social-media.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings
